@@ -13,11 +13,11 @@ export const TableContent = ({ bookInfo }: ISingleBook) => {
 
   return (
     <>
-      <TableCell>{title}</TableCell>
-      <TableCell>{author}</TableCell>
-      <TableCell>{year}</TableCell>
-      <TableCell>{pages}</TableCell>
-      <TableCell>{quantity}</TableCell>
+      <TableCell style={{ borderBottom: "none" }}>{title}</TableCell>
+      <TableCell style={{ borderBottom: "none" }}>{author}</TableCell>
+      <TableCell style={{ borderBottom: "none" }}>{year}</TableCell>
+      <TableCell style={{ borderBottom: "none" }}>{pages}</TableCell>
+      <TableCell style={{ borderBottom: "none" }}>{quantity}</TableCell>
     </>
   );
 };

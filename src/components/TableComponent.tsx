@@ -1,4 +1,6 @@
 import {
+  Box,
+  Button,
   Table,
   TableBody,
   TableCell,
@@ -12,6 +14,7 @@ import { getBooks } from "../features/bookSlice";
 import { AppDispatch, RootState } from "../store";
 import { TableContent } from "./TableContent";
 import { TableHeader } from "./TableHead";
+import AddIcon from "@mui/icons-material/Add";
 
 export const TableComponent = () => {
   const {
@@ -19,19 +22,12 @@ export const TableComponent = () => {
     totalRecords,
     limit,
   } = useSelector((store: RootState) => store.books);
-  const [page, setPage] = useState<number>(1);
+  const [page, setPage] = useState<number>(0);
   const dispatch = useDispatch<AppDispatch>();
   const [sortQueries, setSortQueries] = useState({
-    author: "asc",
-    title: "asc",
+    author: null,
+    title: null,
   });
-  // import { makeStyles } from "@material-ui/core/styles";
-
-  // const useStyles = makeStyles({
-  //   finalRow: {
-  //     backgroundColor: "lightblue",
-  //   },
-  // });
 
   useEffect(() => {
     let filter = `?startPage=${page}&limitPage=${limit ? limit : 10}`;
@@ -49,19 +45,49 @@ export const TableComponent = () => {
     dispatch(getBooks(filter));
   }, [sortQueries, page]);
 
-  const handlePage = (e: any, newPage: number) => {
+  const handlePageChange = (
+    event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number
+  ) => {
     setPage(newPage);
   };
 
   return (
     <>
+      <Box sx={{ bgcolor: "info.main", position: "relative" }} height="150px">
+        <div
+          style={{
+            height: "50px",
+            width: "50px",
+            borderRadius: "50%",
+            background: "white",
+            alignItems: "center",
+            justifyContent: "center",
+            verticalAlign: "middle",
+            position: "absolute",
+            bottom: "-20px",
+            padding: "0.5rem",
+          }}
+        >
+          <AddIcon
+            fontSize="large"
+            sx={{ color: "green", verticalAlign: "middle", fontSize: 20 }}
+          />
+        </div>
+        <Button sx={{ width: "100px" }}></Button>
+      </Box>
       <TableContainer>
         <Table aria-label="simple table">
           <TableHeader query={sortQueries} setQuery={setSortQueries} />
           <TableBody>
             {books.map((item) => {
               return (
-                <TableRow>
+                <TableRow
+                  sx={{
+                    outline: "none",
+                    border: "none",
+                  }}
+                >
                   <TableContent bookInfo={item} />
                 </TableRow>
               );
@@ -71,10 +97,12 @@ export const TableComponent = () => {
       </TableContainer>
       <TablePagination
         page={page}
-        onPageChange={() => setPage(page + 1)}
-        rowsPerPage={-1}
         rowsPerPageOptions={[]}
-        count={totalRecords ? totalRecords : 0}
+        rowsPerPage={10}
+        // back-end hasn't provided totalCount from data base only totalCount from a page
+        // totalCount 300 is taken from design
+        count={300}
+        onPageChange={handlePageChange}
       />
     </>
   );
