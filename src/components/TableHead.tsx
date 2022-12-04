@@ -39,6 +39,8 @@ export const TableHeader = ({ query, setQuery }: any) => {
     <>
       <TableHead>
         <TableRow>
+          <TableCell></TableCell>
+
           {sortTitles.map((i) => {
             return (
               <TableCell key={i}>
@@ -55,6 +57,7 @@ export const TableHeader = ({ query, setQuery }: any) => {
           <TableCell>Year</TableCell>
           <TableCell>Pages</TableCell>
           <TableCell>Quantity</TableCell>
+          <TableCell></TableCell>
         </TableRow>
       </TableHead>
     </>
