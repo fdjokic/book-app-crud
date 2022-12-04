@@ -1,11 +1,4 @@
-import {
-  Box,
-  Button,
-  Table,
-  TableBody,
-  TableContainer,
-  TableRow,
-} from "@mui/material";
+import { Box, Button, Table, TableBody, TableRow } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBooks } from "../../features/bookSlice";
@@ -17,6 +10,7 @@ import {
   CircleBtn,
   CustomBox,
   CustomPagination,
+  CustomTableContainer,
 } from "../../styles/customComponents";
 
 export const TableComponent = () => {
@@ -66,7 +60,7 @@ export const TableComponent = () => {
         </CircleBtn>
         <Button sx={{ width: "100px" }}></Button>
       </CustomBox>
-      <TableContainer>
+      <CustomTableContainer>
         <Table aria-label="simple table">
           <TableHeader query={sortQueries} setQuery={setSortQueries} />
           <TableBody>
@@ -79,7 +73,7 @@ export const TableComponent = () => {
             })}
           </TableBody>
         </Table>
-      </TableContainer>
+      </CustomTableContainer>
       <CustomPagination
         page={page}
         rowsPerPageOptions={[]}

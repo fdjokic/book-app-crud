@@ -1,4 +1,4 @@
-import { Box, Button, TableCell, TablePagination } from "@mui/material";
+import { Box, Button, TableCell, TableContainer, TablePagination } from "@mui/material";
 import { styled } from "@mui/system";
 
 export const CustomCell = styled(TableCell)(()=>({
@@ -6,8 +6,21 @@ export const CustomCell = styled(TableCell)(()=>({
     color:'GrayText'
 }))
 
+export const CustomTableContainer = styled(TableContainer)(()=>({
+    height:'70vh',
+    overflow:'auto',
+}))
+
 export const CustomPagination = styled(TablePagination)(()=>({
     display:'flex',
+    alignItems:'center',
+    justifyContent:'flex-end',
+    marginRight:'20px',
+    borderTop:'1px solid #e1e1e1',
+    borderBottom:'none',
+    height:'70px',
+    color:'GrayText'
+
 }))
 
 export const CircleBtn = styled(Button)(()=>({
@@ -23,7 +36,7 @@ export const CircleBtn = styled(Button)(()=>({
 }))
 
 export const CustomBox = styled(Box)(()=>({
-    height:'150px',
+    height:'20vh',
     background:'blue',
     position:'relative',
 
