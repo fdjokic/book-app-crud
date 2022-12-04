@@ -22,13 +22,11 @@ export const TableHeader = ({ query, setQuery }: any) => {
   const sortTitles = ["Title", "Author"];
 
   const toggleSort = (param: string) => {
-    console.log(query[param]);
     if (query[param] === "asc") return "desc";
     return "asc";
   };
 
   const handleSort = (i: string) => {
-    console.log(i);
     const param = i.toLowerCase();
 
     setActive(i);

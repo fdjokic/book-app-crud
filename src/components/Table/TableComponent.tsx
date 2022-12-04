@@ -3,18 +3,21 @@ import {
   Button,
   Table,
   TableBody,
-  TableCell,
   TableContainer,
-  TablePagination,
   TableRow,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getBooks } from "../features/bookSlice";
-import { AppDispatch, RootState } from "../store";
+import { getBooks } from "../../features/bookSlice";
+import { AppDispatch, RootState } from "../../store";
 import { TableContent } from "./TableContent";
 import { TableHeader } from "./TableHead";
 import AddIcon from "@mui/icons-material/Add";
+import {
+  CircleBtn,
+  CustomBox,
+  CustomPagination,
+} from "../../styles/customComponents";
 
 export const TableComponent = () => {
   const {
@@ -54,40 +57,22 @@ export const TableComponent = () => {
 
   return (
     <>
-      <Box sx={{ bgcolor: "info.main", position: "relative" }} height="150px">
-        <div
-          style={{
-            height: "50px",
-            width: "50px",
-            borderRadius: "50%",
-            background: "white",
-            alignItems: "center",
-            justifyContent: "center",
-            verticalAlign: "middle",
-            position: "absolute",
-            bottom: "-20px",
-            padding: "0.5rem",
-          }}
-        >
+      <CustomBox>
+        <CircleBtn sx={{ hover: { backgroundColor: "transparent" } }}>
           <AddIcon
             fontSize="large"
             sx={{ color: "green", verticalAlign: "middle", fontSize: 20 }}
           />
-        </div>
+        </CircleBtn>
         <Button sx={{ width: "100px" }}></Button>
-      </Box>
+      </CustomBox>
       <TableContainer>
         <Table aria-label="simple table">
           <TableHeader query={sortQueries} setQuery={setSortQueries} />
           <TableBody>
             {books.map((item) => {
               return (
-                <TableRow
-                  sx={{
-                    outline: "none",
-                    border: "none",
-                  }}
-                >
+                <TableRow>
                   <TableContent bookInfo={item} />
                 </TableRow>
               );
@@ -95,7 +80,7 @@ export const TableComponent = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <TablePagination
+      <CustomPagination
         page={page}
         rowsPerPageOptions={[]}
         rowsPerPage={10}
