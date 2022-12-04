@@ -1,11 +1,11 @@
-import { TableCell } from "@mui/material";
+import { TableRow } from "@mui/material";
 import React from "react";
-import { ISingleBook } from "../../books.interfaces";
+import { ISingleBook, ISingleBookInfo } from "../../books.interfaces";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Placeholder from "../../assets/images/placeholder.jpeg";
 import { CustomCell } from "../../styles/customComponents";
 
-export const TableContent = ({ bookInfo }: ISingleBook) => {
+export const TableContent = (props: ISingleBookInfo) => {
   const {
     title,
     nameOfAuthor: author,
@@ -13,7 +13,7 @@ export const TableContent = ({ bookInfo }: ISingleBook) => {
     quantity,
     numOfPages: pages,
     coverPhoto,
-  } = bookInfo;
+  } = props.bookInfo;
 
   return (
     <>

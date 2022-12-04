@@ -1,12 +1,14 @@
- export interface IBook {
-title:string
-nameOfAuthor:string
-yearOfBublishing:number
-quantity:number
-numOfPages:number
-coverPhoto:string
+export interface ISingleBookInfo {
+  bookInfo: ISingleBook;
 }
-
 export interface ISingleBook {
-    bookInfo:IBook
+  id: number;
+  isbn: number;
+  title: string;
+  nameOfAuthor: string;
+  dateOfBirthAuthor: string;
+  numOfPages: number;
+  yearOfBublishing: number;
+  quantity: number;
+  coverPhoto?: string;
 }

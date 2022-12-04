@@ -1,4 +1,4 @@
-import { Box, Button, Table, TableBody, TableRow } from "@mui/material";
+import { Button, Table, TableBody, TableRow } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBooks } from "../../features/bookSlice";
@@ -12,13 +12,10 @@ import {
   CustomPagination,
   CustomTableContainer,
 } from "../../styles/customComponents";
+import { ISingleBook } from "../../books.interfaces";
 
 export const TableComponent = () => {
-  const {
-    books = [],
-    totalRecords,
-    limit,
-  } = useSelector((store: RootState) => store.books);
+  const { books = [], limit } = useSelector((store: RootState) => store.books);
   const [page, setPage] = useState<number>(0);
   const dispatch = useDispatch<AppDispatch>();
   const [sortQueries, setSortQueries] = useState({
@@ -64,9 +61,9 @@ export const TableComponent = () => {
         <Table aria-label="simple table">
           <TableHeader query={sortQueries} setQuery={setSortQueries} />
           <TableBody>
-            {books.map((item) => {
+            {books.map((item: ISingleBook) => {
               return (
-                <TableRow>
+                <TableRow key={item.id}>
                   <TableContent bookInfo={item} />
                 </TableRow>
               );
