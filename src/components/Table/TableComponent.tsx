@@ -59,6 +59,7 @@ export const TableComponent = () => {
   return (
     <div className="container">
       <div className={slide ? "table shrink" : "table"}>
+        {/* make this comp dynamic and reusable */}
         <CustomBox>
           <div
             style={{
