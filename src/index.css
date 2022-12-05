@@ -13,27 +13,10 @@
   background-color: transparent;
   display: none;
 }
-.container {
-  width: 100vw;
-  transition: all 0.5s ease-in-out;
-  display: flex;
-
-}
-.table {
-  min-width: 100vw;
-  z-index: 2;
-  transition: all 0.8s ease-in-out;
-  height: 100vh;
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.4);
-}
-
-/* toggle show classes */
-.active {
-  display: block;
-  z-index: 999999;
-}
-
-.shrink {
-  min-width: 70vw;
-  transition: all 0.5s ease-in-out;
+.header-content{
+    padding: 1rem 5rem 2rem 8rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
 }

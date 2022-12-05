@@ -12,15 +12,7 @@ export const Header = ({
   return (
     <div>
       <CustomBox>
-        <div
-          style={{
-            padding: "1rem 5rem 2rem 8rem",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            color: "white",
-          }}
-        >
+        <div className="header-content">
           <h1>{title}</h1>
         </div>
         {circle ? <CircleButton /> : null}

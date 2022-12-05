@@ -6,17 +6,17 @@ import { AppDispatch, RootState } from "../../store";
 import { TableContent } from "./TableContent";
 import { TableHeader } from "./TableHead";
 import {
-  CustomBox,
   CustomPagination,
   CustomTableContainer,
   CustomTableRow,
 } from "../../styles/customComponents";
 import { ISingleBook } from "../../books.interfaces";
-import { CircleButton } from "../Buttons/CircleButton";
 import { BookPreview } from "../Preview/BookPreview";
 import { Header } from "../Header/Header";
+import "./table.css";
 
 export const TableComponent = () => {
+  // states
   const {
     books = [],
     limit,
@@ -29,6 +29,7 @@ export const TableComponent = () => {
     author: null,
     title: null,
   });
+  // end of states
 
   useEffect(() => {
     let filter = `?startPage=${page}&limitPage=${limit ? limit : 10}`;
@@ -60,7 +61,6 @@ export const TableComponent = () => {
   return (
     <div className="container">
       <div className={slide ? "table shrink" : "table"}>
-        {/* make this comp dynamic and reusable  */}
         <Header circle title="Books" />
         <CustomTableContainer>
           <Table aria-label="simple table" stickyHeader>
