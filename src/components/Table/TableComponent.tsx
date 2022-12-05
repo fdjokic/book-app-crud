@@ -1,19 +1,19 @@
-import { Table, TableBody } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getBooks, getSingleBook } from '../../features/bookSlice';
-import { AppDispatch, RootState } from '../../store';
-import { TableContent } from './TableContent';
-import { TableHeader } from './TableHead';
+import { Table, TableBody } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getBooks, getSingleBook } from "../../features/bookSlice";
+import { AppDispatch, RootState } from "../../store";
+import { TableContent } from "./TableContent";
+import { TableHeader } from "./TableHead";
 import {
   CustomBox,
   CustomPagination,
   CustomTableContainer,
   CustomTableRow,
-} from '../../styles/customComponents';
-import { ISingleBook } from '../../books.interfaces';
-import { CircleButton } from '../Buttons/CircleButton';
-import { BookPreview } from '../Preview/BookPreview';
+} from "../../styles/customComponents";
+import { ISingleBook } from "../../books.interfaces";
+import { CircleButton } from "../Buttons/CircleButton";
+import { BookPreview } from "../Preview/BookPreview";
 
 export const TableComponent = () => {
   const {
@@ -57,13 +57,24 @@ export const TableComponent = () => {
   };
 
   return (
-    <div className='container'>
-      <div className={slide ? 'table shrink' : 'table'}>
+    <div className="container">
+      <div className={slide ? "table shrink" : "table"}>
         <CustomBox>
+          <div
+            style={{
+              padding: "1rem 5rem 2rem 8rem",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              color: "white",
+            }}
+          >
+            <h1>Books</h1>
+          </div>
           <CircleButton />
         </CustomBox>
         <CustomTableContainer>
-          <Table aria-label='simple table' stickyHeader>
+          <Table aria-label="simple table" stickyHeader>
             <TableHeader query={sortQueries} setQuery={setSortQueries} />
             <TableBody>
               {books.map((item: ISingleBook) => {

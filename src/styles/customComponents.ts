@@ -52,6 +52,10 @@ export const CustomBox = styled(Box)(() => ({
   height: '20vh',
   background: '#0b52a2',
   position: 'relative',
+  display:'flex',
+  justifyContent:'flex-start',
+  alignItems:'self-end',
+  
 }));
 export const CustomTableRow = styled(TableRow)(() => ({
   transition: 'all 0.6s ease-out',
