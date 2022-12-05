@@ -39,6 +39,20 @@ export const getSingleBook = createAsyncThunk(
   }
 );
 
+export const deleteBook = createAsyncThunk(
+  'books/deleteBook',
+  async (id: number, thunkAPI) => {
+    try {
+      const resp = await baseUrl.delete('/books/' + id);
+
+      thunkAPI.dispatch(getBooks('?startPage=1&limitPage=10'));
+      return resp.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 const booksSlice = createSlice({
   name: 'books',
   initialState,
@@ -65,6 +79,15 @@ const booksSlice = createSlice({
       console.log(payload);
     },
     [getSingleBook.rejected.type]: (state) => {
+      state.isLoading = false;
+    },
+    [deleteBook.pending.type]: (state) => {
+      state.isLoading = true;
+    },
+    [deleteBook.fulfilled.type]: (state) => {
+      state.isLoading = false;
+    },
+    [deleteBook.rejected.type]: (state) => {
       state.isLoading = false;
     },
   },

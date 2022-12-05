@@ -1,4 +1,4 @@
-import { Button, Table, TableBody } from '@mui/material';
+import { Table, TableBody } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBooks, getSingleBook } from '../../features/bookSlice';
@@ -6,7 +6,6 @@ import { AppDispatch, RootState } from '../../store';
 import { TableContent } from './TableContent';
 import { TableHeader } from './TableHead';
 import {
-  CircleBtn,
   CustomBox,
   CustomPagination,
   CustomTableContainer,
@@ -14,9 +13,14 @@ import {
 } from '../../styles/customComponents';
 import { ISingleBook } from '../../books.interfaces';
 import { CircleButton } from '../Buttons/CircleButton';
+import { BookPreview } from '../Preview/BookPreview';
 
 export const TableComponent = () => {
-  const { books = [], limit } = useSelector((store: RootState) => store.books);
+  const {
+    books = [],
+    limit,
+    singleBook,
+  } = useSelector((store: RootState) => store.books);
   const [page, setPage] = useState<number>(0);
   const dispatch = useDispatch<AppDispatch>();
   const [slide, setSlide] = useState<boolean>(false);
@@ -47,12 +51,16 @@ export const TableComponent = () => {
   ) => {
     setPage(newPage);
   };
+  const handleBookPreview = (id: number) => {
+    setSlide(true);
+    dispatch(getSingleBook(id));
+  };
 
   return (
     <div className='container'>
       <div className={slide ? 'table shrink' : 'table'}>
         <CustomBox>
-          <CircleButton setSlide={setSlide} slide={slide} />
+          <CircleButton />
         </CustomBox>
         <CustomTableContainer>
           <Table aria-label='simple table' stickyHeader>
@@ -62,7 +70,7 @@ export const TableComponent = () => {
                 return (
                   <CustomTableRow
                     key={item.id}
-                    onClick={() => dispatch(getSingleBook(item.id))}
+                    onClick={() => handleBookPreview(item.id)}
                   >
                     <TableContent bookInfo={item} />
                   </CustomTableRow>
@@ -81,7 +89,11 @@ export const TableComponent = () => {
           onPageChange={handlePageChange}
         />
       </div>
-      <div className={slide ? 'singleBook show' : 'singleBook'}></div>
+      <BookPreview
+        bookInfo={singleBook}
+        slide={slide}
+        setSlide={setSlide}
+      ></BookPreview>
     </div>
   );
 };

@@ -2,14 +2,9 @@ import React from 'react';
 import { CircleBtn } from '../../styles/customComponents';
 import AddIcon from '@mui/icons-material/Add';
 
-interface ICirlceBtn {
-  slide: boolean;
-  setSlide: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-export const CircleButton = ({ setSlide, slide }: any) => {
+export const CircleButton = () => {
   return (
-    <CircleBtn onClick={() => setSlide(!slide)}>
+    <CircleBtn>
       <AddIcon
         fontSize='large'
         sx={{ color: 'green', verticalAlign: 'middle', fontSize: 20 }}
