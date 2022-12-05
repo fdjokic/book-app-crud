@@ -38,7 +38,7 @@ export const TableHeader = ({ query, setQuery }: any) => {
       {/* change font color to gray */}
       <TableHead>
         <TableRow>
-          <TableCell></TableCell>
+          <TableCell sx={{ border: "none" }}></TableCell>
 
           {sortTitles.map((i) => {
             return (
