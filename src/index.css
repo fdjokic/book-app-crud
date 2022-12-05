@@ -33,6 +33,7 @@
 /* toggle show classes */
 .active {
   display: block;
+  z-index: 999999;
 }
 .show {
   transform: translateX(0);
