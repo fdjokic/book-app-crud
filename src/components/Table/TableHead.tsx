@@ -35,6 +35,7 @@ export const TableHeader = ({ query, setQuery }: any) => {
 
   return (
     <>
+      {/* change font color to gray */}
       <TableHead>
         <TableRow>
           <TableCell></TableCell>
