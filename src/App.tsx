@@ -4,6 +4,7 @@ import { TableComponent } from "./components/Table/TableComponent";
 import { Loading } from "./components/Loading/Loading";
 import { Route, Routes } from "react-router";
 import { BrowserRouter as Router } from "react-router-dom";
+import { Header } from "./components/Header/Header";
 
 function App() {
   return (
@@ -12,7 +13,14 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<TableComponent />} />
-          <Route path="/add-book" element={<div>add</div>} />
+          <Route
+            path="/add-book"
+            element={
+              <div>
+                <Header title="Add book" />
+              </div>
+            }
+          />
         </Routes>
       </Router>
     </>
