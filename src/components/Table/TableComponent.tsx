@@ -14,6 +14,7 @@ import {
 import { ISingleBook } from "../../books.interfaces";
 import { CircleButton } from "../Buttons/CircleButton";
 import { BookPreview } from "../Preview/BookPreview";
+import { Header } from "../Header/Header";
 
 export const TableComponent = () => {
   const {
@@ -59,21 +60,8 @@ export const TableComponent = () => {
   return (
     <div className="container">
       <div className={slide ? "table shrink" : "table"}>
-        {/* make this comp dynamic and reusable */}
-        <CustomBox>
-          <div
-            style={{
-              padding: "1rem 5rem 2rem 8rem",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              color: "white",
-            }}
-          >
-            <h1>Books</h1>
-          </div>
-          <CircleButton />
-        </CustomBox>
+        {/* make this comp dynamic and reusable  */}
+        <Header circle title="Books" />
         <CustomTableContainer>
           <Table aria-label="simple table" stickyHeader>
             <TableHeader query={sortQueries} setQuery={setSortQueries} />

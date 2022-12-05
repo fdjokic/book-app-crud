@@ -26,23 +26,13 @@
   height: 100vh;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.4);
 }
-.singleBook {
-  transform: translateX(-30vw);
-  height: 100vh;
-  transition: all 0.5s ease-in-out;
-  z-index: -1;
-}
+
 /* toggle show classes */
 .active {
   display: block;
   z-index: 999999;
 }
-.show {
-  transform: translateX(0);
-  transition: all 0.7s ease-in-out;
-  width: 30vw;
-  z-index: 1;
-}
+
 .shrink {
   min-width: 70vw;
   transition: all 0.5s ease-in-out;

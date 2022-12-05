@@ -12,6 +12,7 @@ import { styled } from '@mui/system';
 export const CustomCell = styled(TableCell)(() => ({
   borderBottom: 'none',
   color: 'GrayText',
+
 }));
 
 export const CustomTableContainer = styled(TableContainer)(() => ({

@@ -1,6 +1,8 @@
 import React from "react";
 import { ISingleBook, ISingleBookInfo } from "../../books.interfaces";
 import { IconContainer } from "./IconContainer";
+import "./bookPreview.css";
+import { InfoLine } from "./InfoLine";
 
 export const BookPreview = ({
   slide,
@@ -14,39 +16,24 @@ export const BookPreview = ({
   console.log(bookInfo);
   return (
     <div className={slide ? "singleBook show" : "singleBook"}>
-      <div
-        style={{
-          background: "#002b73",
-          height: "20vh",
-          boxShadow: "0 3px 10px rgb(0 0 0 / 0.3)",
-        }}
-      >
+      <div className="singleBook-header">
         <IconContainer id={bookInfo.id} setSlide={setSlide} />
-        <div
-          style={{
-            textAlign: "left",
-            width: "100%",
-          }}
-        >
-          <div
-            style={{
-              padding: "2.5rem 1.5rem",
-              color: "white",
-              display: "flex",
-              flexDirection: "column",
-              gap: "0.3rem",
-            }}
-          >
+        <div className="singleBook-header-wrapper">
+          <div className="singleBook-header-info">
             <h4>{bookInfo.title}</h4>
             <h6>{bookInfo.nameOfAuthor}</h6>
           </div>
         </div>
       </div>
-      <img
-        src={bookInfo.coverPhoto}
-        alt=""
-        style={{ width: "100%", height: "40%", objectFit: "contain" }}
-      />
+      <img src={bookInfo.coverPhoto} alt="book-img" />
+      <div className="singleBook-general-info">
+        <h5>Info</h5>
+        <InfoLine value={bookInfo.title} title="Title" />
+        <InfoLine value={bookInfo.nameOfAuthor} title="Author" />
+        <InfoLine value={bookInfo.yearOfPublishing} title="Year" />
+        <InfoLine value={bookInfo.numberOfPages} title="Pages" />
+        <InfoLine value={bookInfo.quantity} title="Quantity" />
+      </div>
     </div>
   );
 };
