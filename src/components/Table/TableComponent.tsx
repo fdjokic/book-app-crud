@@ -1,11 +1,10 @@
-import { Button, Table, TableBody, TableRow } from '@mui/material';
+import { Button, Table, TableBody } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBooks, getSingleBook } from '../../features/bookSlice';
 import { AppDispatch, RootState } from '../../store';
 import { TableContent } from './TableContent';
 import { TableHeader } from './TableHead';
-import AddIcon from '@mui/icons-material/Add';
 import {
   CircleBtn,
   CustomBox,
@@ -14,11 +13,13 @@ import {
   CustomTableRow,
 } from '../../styles/customComponents';
 import { ISingleBook } from '../../books.interfaces';
+import { CircleButton } from '../Buttons/CircleButton';
 
 export const TableComponent = () => {
   const { books = [], limit } = useSelector((store: RootState) => store.books);
   const [page, setPage] = useState<number>(0);
   const dispatch = useDispatch<AppDispatch>();
+  const [slide, setSlide] = useState<boolean>(false);
   const [sortQueries, setSortQueries] = useState({
     author: null,
     title: null,
@@ -38,7 +39,7 @@ export const TableComponent = () => {
     }
 
     dispatch(getBooks(filter));
-  }, [sortQueries, page]);
+  }, [sortQueries, page, limit, dispatch]);
 
   const handlePageChange = (
     event: React.MouseEvent<HTMLButtonElement> | null,
@@ -48,15 +49,9 @@ export const TableComponent = () => {
   };
 
   return (
-    <>
+    <div className={slide ? 'container slide' : 'container'}>
       <CustomBox>
-        <CircleBtn sx={{ hover: { backgroundColor: 'transparent' } }}>
-          <AddIcon
-            fontSize='large'
-            sx={{ color: 'green', verticalAlign: 'middle', fontSize: 20 }}
-          />
-        </CircleBtn>
-        <Button sx={{ width: '100px' }}></Button>
+        <CircleButton setSlide={setSlide} slide={slide} />
       </CustomBox>
       <CustomTableContainer>
         <Table aria-label='simple table'>
@@ -78,12 +73,12 @@ export const TableComponent = () => {
       <CustomPagination
         page={page}
         rowsPerPageOptions={[]}
-        rowsPerPage={10}
+        rowsPerPage={limit ? limit : 10}
         // back-end hasn't provided totalCount from data base only totalCount from a page
-        // totalCount 300 is taken from design
+        // totalCount 300 is taken from design pdf provided
         count={300}
         onPageChange={handlePageChange}
       />
-    </>
+    </div>
   );
 };

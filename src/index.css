@@ -12,6 +12,19 @@
   background-color: transparent;
   display: none;
 }
+.container {
+  width: 100vw;
+  transition: all 0.6s ease-in-out;
+}
+.slide {
+  width: 70vw;
+  transition: all 0.6s ease-in-out;
+}
+.singleBook {
+  display: none;
+  height: 100vh;
+  background-color: red;
+}
 .active {
   display: block;
 }
