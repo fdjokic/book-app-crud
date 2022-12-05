@@ -17,12 +17,14 @@
   width: 100vw;
   transition: all 0.5s ease-in-out;
   display: flex;
+
 }
 .table {
   min-width: 100vw;
   z-index: 2;
   transition: all 0.8s ease-in-out;
   height: 100vh;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.4);
 }
 .singleBook {
   transform: translateX(-30vw);

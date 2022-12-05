@@ -55,7 +55,11 @@ export const CustomBox = styled(Box)(() => ({
   display:'flex',
   justifyContent:'flex-start',
   alignItems:'self-end',
-  
+  boxShadow: "0 3px 10px rgb(0 0 0 / 0.3)",
+  zIndex:'99'
+
+
+
 }));
 export const CustomTableRow = styled(TableRow)(() => ({
   transition: 'all 0.6s ease-out',
