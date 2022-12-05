@@ -49,36 +49,39 @@ export const TableComponent = () => {
   };
 
   return (
-    <div className={slide ? 'container slide' : 'container'}>
-      <CustomBox>
-        <CircleButton setSlide={setSlide} slide={slide} />
-      </CustomBox>
-      <CustomTableContainer>
-        <Table aria-label='simple table'>
-          <TableHeader query={sortQueries} setQuery={setSortQueries} />
-          <TableBody>
-            {books.map((item: ISingleBook) => {
-              return (
-                <CustomTableRow
-                  key={item.id}
-                  onClick={() => dispatch(getSingleBook(item.id))}
-                >
-                  <TableContent bookInfo={item} />
-                </CustomTableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
-      </CustomTableContainer>
-      <CustomPagination
-        page={page}
-        rowsPerPageOptions={[]}
-        rowsPerPage={limit ? limit : 10}
-        // back-end hasn't provided totalCount from data base only totalCount from a page
-        // totalCount 300 is taken from design pdf provided
-        count={300}
-        onPageChange={handlePageChange}
-      />
+    <div className='container'>
+      <div className={slide ? 'table shrink' : 'table'}>
+        <CustomBox>
+          <CircleButton setSlide={setSlide} slide={slide} />
+        </CustomBox>
+        <CustomTableContainer>
+          <Table aria-label='simple table' stickyHeader>
+            <TableHeader query={sortQueries} setQuery={setSortQueries} />
+            <TableBody>
+              {books.map((item: ISingleBook) => {
+                return (
+                  <CustomTableRow
+                    key={item.id}
+                    onClick={() => dispatch(getSingleBook(item.id))}
+                  >
+                    <TableContent bookInfo={item} />
+                  </CustomTableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
+        </CustomTableContainer>
+        <CustomPagination
+          page={page}
+          rowsPerPageOptions={[]}
+          rowsPerPage={limit ? limit : 10}
+          // back-end hasn't provided totalCount from data base only totalCount from a page
+          // totalCount 300 is taken from design pdf provided
+          count={300}
+          onPageChange={handlePageChange}
+        />
+      </div>
+      <div className={slide ? 'singleBook show' : 'singleBook'}></div>
     </div>
   );
 };

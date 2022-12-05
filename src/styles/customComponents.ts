@@ -16,18 +16,22 @@ export const CustomCell = styled(TableCell)(() => ({
 
 export const CustomTableContainer = styled(TableContainer)(() => ({
   height: '70vh',
-  overflow: 'auto',
+  overflowY: 'auto',
+  background: 'white',
+  '&::-webkit-scrollbar': {
+    display: 'none',
+  },
 }));
 
 export const CustomPagination = styled(TablePagination)(() => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-end',
-  marginRight: '20px',
   borderTop: '1px solid #e1e1e1',
   borderBottom: 'none',
-  height: '70px',
+  height: '74px',
   color: 'GrayText',
+  background: 'white',
 }));
 
 export const CircleBtn = styled(Button)(() => ({
@@ -43,7 +47,7 @@ export const CircleBtn = styled(Button)(() => ({
     backgroundColor: 'white',
   },
 }));
-// #002b73
+
 export const CustomBox = styled(Box)(() => ({
   height: '20vh',
   background: '#0b52a2',
