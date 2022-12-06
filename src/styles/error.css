@@ -1,0 +1,22 @@
+.error{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: xx-large;
+   }
+   .img-container{
+    display: flex;
+    flex-direction: column;
+
+   }
+   .img-container button{
+    width: 10rem;
+    margin: 0 auto;
+    font-size: 1.5rem;
+   }
+   .img-container img{
+   object-fit: contain;
+   width: 100vw;
+   height: 80vh;
+   }

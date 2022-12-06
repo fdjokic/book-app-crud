@@ -7,6 +7,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { AddBook } from "./pages/AddBook";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Error } from "./pages/Error";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<TableComponent />} />
           <Route path="/add-book" element={<AddBook />} />
+          <Route path="*" element={<Error />} />
         </Routes>
       </Router>
       <ToastContainer
