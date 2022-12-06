@@ -14,12 +14,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<TableComponent />} />
-          <Route
-            path="/add-book"
-            element={
-              <AddBook/>
-            }
-          />
+          <Route path="/add-book" element={<AddBook />} />
         </Routes>
       </Router>
     </>

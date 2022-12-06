@@ -1,9 +1,9 @@
-import React from 'react';
-import { TextField } from '@mui/material';
+import React from "react";
+import { TextField } from "@mui/material";
 
 interface IInput {
   name: string;
-  label: string;
+  label?: string;
   value?: any;
   placeholder?: string;
   onChange?: (e: any) => void;
@@ -15,7 +15,7 @@ export default function Input(props: IInput) {
   const { name, label, value, onChange, placeholder, width, type } = props;
   return (
     <TextField
-      variant='standard'
+      variant="standard"
       label={label}
       name={name}
       value={value}

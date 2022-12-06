@@ -57,12 +57,8 @@ export const createBook = createAsyncThunk(
   'books/createBook',
   async (book: any, thunkAPI) => {
     try {
-      const copy: any = { ...book };
-      copy.coverPhoto = await getBase64(copy.coverPhoto);
-      // const fd = new FormData();
-      // fd.append('image', copy.coverPhoto);
-      // copy.coverPhoto = fd;
-      const resp = await baseUrl.post('/books', copy, thunkAPI);
+   
+      const resp = await baseUrl.post('/books', book, thunkAPI);
 
       return resp.data;
     } catch (error) {
