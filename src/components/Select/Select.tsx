@@ -10,6 +10,8 @@ export const Select = () => {
   const [selectedAuthor, setSelectedAuthor] = useState("Any Author");
   const dispatch = useDispatch<AppDispatch>();
 
+  const uniqueOptions: string[] = Array.from(new Set(selectOptions));
+
   useEffect(() => {
     if (selectedAuthor === "Any Author") {
       dispatch(getBooks(null));
@@ -36,7 +38,7 @@ export const Select = () => {
       >
         Any Author
       </MenuItem>
-      {selectOptions.map((i: string) => {
+      {uniqueOptions.map((i: string) => {
         return (
           <MenuItem key={i} value={i} onClick={() => setSelectedAuthor(i)}>
             {i}
