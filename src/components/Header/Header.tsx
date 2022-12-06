@@ -24,15 +24,17 @@ export const Header = ({
     <div>
       <CustomBox>
         <div className="header-content">
-          <Icon
-            width="25px"
-            color="white"
-            fontSize="25px"
-            onClick={() => navigate("/")}
-            fixed
-          >
-            <ArrowBack />
-          </Icon>
+          {arrow ? (
+            <Icon
+              width="25px"
+              color="white"
+              fontSize="25px"
+              onClick={() => navigate("/")}
+              fixed
+            >
+              <ArrowBack />
+            </Icon>
+          ) : null}
           <h1>{title}</h1>
           {select ? <Select /> : null}
         </div>
