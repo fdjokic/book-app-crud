@@ -13,8 +13,7 @@ import { styled } from '@mui/system';
 export const CustomCell = styled(TableCell)(() => ({
   borderBottom: 'none',
   color: 'GrayText',
- maxWidth:'7rem',
- minWidth:'5rem'
+ maxWidth:'12rem',
 
 
 

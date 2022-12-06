@@ -24,7 +24,9 @@ export const TableContent = (props: ISingleBookInfo) => {
         />
       </CustomCell>
 
-      <CustomCell>{title}</CustomCell>
+      <CustomCell sx={{ color: "black", fontWeight: "400" }}>
+        {title}
+      </CustomCell>
       <CustomCell>{author}</CustomCell>
       <CustomCell>{year}</CustomCell>
       <CustomCell>{pages}</CustomCell>
