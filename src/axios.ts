@@ -1,8 +1,5 @@
 import axios from 'axios'
 
 export const baseUrl = axios.create({
-    baseURL: `https://book-store.mvsoft.co.rs`,
-    // headers: {
-    //   'Content-Type': 'application/json',
-    // },
+    baseURL:  process.env.REACT_APP_API,
   })

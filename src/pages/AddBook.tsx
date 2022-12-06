@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { ISingleBookPOST } from "../books.interfaces";
+import { ISingleBookPOST } from "../types/books.interfaces";
 import { Header } from "../components/Header/Header";
 import Input from "../components/Input/Inputs";
 import { createBook } from "../features/bookSlice";

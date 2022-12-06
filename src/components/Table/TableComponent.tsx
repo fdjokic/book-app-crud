@@ -10,7 +10,7 @@ import {
   CustomTableContainer,
   CustomTableRow,
 } from "../../styles/customComponents";
-import { ISingleBook } from "../../books.interfaces";
+import { ISingleBook } from "../../types/books.interfaces";
 import { BookPreview } from "../Preview/BookPreview";
 import { Header } from "../Header/Header";
 import "../../styles/table.css";

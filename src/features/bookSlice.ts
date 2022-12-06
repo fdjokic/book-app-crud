@@ -1,9 +1,9 @@
-import { ISingleBookPOST } from './../books.interfaces';
+import { ISingleBookPOST } from '../types/books.interfaces';
 import { baseUrl } from './../axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getBase64 } from '../helpers';
 import { toast } from 'react-toastify';
-import { ISingleBook } from '../books.interfaces';
+import { ISingleBook } from '../types/books.interfaces';
 
 const initialState = {
   isLoading: false,

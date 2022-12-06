@@ -1,5 +1,5 @@
 import React from "react";
-import { ISingleBook, ISingleBookInfo } from "../../books.interfaces";
+import { ISingleBook, ISingleBookInfo } from "../../types/books.interfaces";
 import { IconContainer } from "./IconContainer";
 import Placeholder from "../../assets/images/placeholder.jpeg";
 import "../../styles/bookPreview.css";
