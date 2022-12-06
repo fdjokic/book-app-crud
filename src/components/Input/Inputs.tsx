@@ -6,10 +6,10 @@ interface IInput {
   label?: string;
   value?: any;
   placeholder?: string;
-  onChange?: (e: any) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   width?: string;
   type?: string;
-  onKeyDown?: (e: any) => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLImageElement>) => void;
 }
 
 export default function Input(props: IInput) {

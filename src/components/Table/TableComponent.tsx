@@ -26,8 +26,8 @@ export const TableComponent = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [slide, setSlide] = useState<boolean>(false);
   const [sortQueries, setSortQueries] = useState({
-    author: null,
-    title: null,
+    author: "",
+    title: "",
   });
   // end of states
 

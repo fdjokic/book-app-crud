@@ -1,3 +1,5 @@
+import { KeyboardEvent } from "react";
+
 export const getBase64 = (file: any) => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -7,11 +9,11 @@ export const getBase64 = (file: any) => {
   });
 };
 
-export const onlyLetters = (e: any) => {
-  console.log(e.key);
+export const onlyLetters = (e:KeyboardEvent<HTMLImageElement>) => {
+
   if (!(e.key === 'Backspace')) {
     const regex = /[0-9]/;
-    const valid = regex.test(e.key);
+    const valid:boolean = regex.test(e.key);
     if (!valid) e.preventDefault();
   }
 };

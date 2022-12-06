@@ -1,9 +1,9 @@
-import React from 'react';
-import { ISingleBook, ISingleBookInfo } from '../../books.interfaces';
-import { IconContainer } from './IconContainer';
-import Placeholder from '../../assets/images/placeholder.jpeg';
-import './bookPreview.css';
-import { InfoLine } from './InfoLine';
+import React from "react";
+import { ISingleBook, ISingleBookInfo } from "../../books.interfaces";
+import { IconContainer } from "./IconContainer";
+import Placeholder from "../../assets/images/placeholder.jpeg";
+import "./bookPreview.css";
+import { InfoLine } from "./InfoLine";
 
 export const BookPreview = ({
   slide,
@@ -16,11 +16,11 @@ export const BookPreview = ({
 }) => {
   console.log(bookInfo);
   return (
-    <div className={slide ? 'singleBook show' : 'singleBook'}>
-      <div className='singleBook-header'>
+    <div className={slide ? "singleBook show" : "singleBook"}>
+      <div className="singleBook-header">
         <IconContainer id={bookInfo.id} setSlide={setSlide} />
-        <div className='singleBook-header-wrapper'>
-          <div className='singleBook-header-info'>
+        <div className="singleBook-header-wrapper">
+          <div className="singleBook-header-info">
             <h4>{bookInfo.title}</h4>
             <h6>{bookInfo.nameOfAuthor}</h6>
           </div>
@@ -28,16 +28,16 @@ export const BookPreview = ({
       </div>
       <img
         src={bookInfo.coverPhoto}
-        alt='book-img'
+        alt="book-img"
         onError={({ currentTarget }) => (currentTarget.src = Placeholder)}
       />
-      <div className='singleBook-general-info'>
+      <div className="singleBook-general-info">
         <h5>Info</h5>
-        <InfoLine value={bookInfo.title} title='Title' />
-        <InfoLine value={bookInfo.nameOfAuthor} title='Author' />
-        <InfoLine value={bookInfo.yearOfPublishing} title='Year' />
-        <InfoLine value={bookInfo.numberOfPages} title='Pages' />
-        <InfoLine value={bookInfo.quantity} title='Quantity' />
+        <InfoLine value={bookInfo.title} title="Title" />
+        <InfoLine value={bookInfo.nameOfAuthor} title="Author" />
+        <InfoLine value={bookInfo.yearOfPublishing} title="Year" />
+        <InfoLine value={bookInfo.numberOfPages} title="Pages" />
+        <InfoLine value={bookInfo.quantity} title="Quantity" />
       </div>
     </div>
   );

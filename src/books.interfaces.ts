@@ -26,5 +26,5 @@ export interface ISingleBookPOST {
   numberOfPages: number | null;
   yearOfPublishing: number | null;
   quantity: number | null;
-  coverPhoto?: any;
+  coverPhoto?:string | any;
 }

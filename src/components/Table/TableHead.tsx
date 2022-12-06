@@ -8,8 +8,8 @@ interface IQuery {
 interface ITableHeader {
   setQuery: React.Dispatch<
     React.SetStateAction<{
-      author: string;
-      title: string;
+      author: null;
+      title: null;
     }>
   >;
   query: IQuery;

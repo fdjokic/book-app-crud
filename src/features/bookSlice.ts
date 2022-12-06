@@ -1,7 +1,9 @@
+import { ISingleBookPOST } from './../books.interfaces';
 import { baseUrl } from './../axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getBase64 } from '../helpers';
 import { toast } from 'react-toastify';
+import { ISingleBook } from '../books.interfaces';
 
 const initialState = {
   isLoading: false,
@@ -57,7 +59,7 @@ export const deleteBook = createAsyncThunk(
 );
 export const createBook = createAsyncThunk(
   'books/createBook',
-  async (book: any, thunkAPI) => {
+  async (book: ISingleBookPOST, thunkAPI) => {
     try {
    
       const resp = await baseUrl.post('/books', book, thunkAPI);
@@ -91,7 +93,7 @@ const booksSlice = createSlice({
     [getBooks.pending.type]: (state) => {
       state.isLoading = true;
     },
-    [getBooks.fulfilled.type]: (state:any, { payload }) => {
+    [getBooks.fulfilled.type]: (state, { payload }) => {
       state.books = payload.records;
       state.isLoading = false;
       state.totalRecords = payload.totalRecords;
@@ -137,11 +139,11 @@ const booksSlice = createSlice({
     [getSelectOptions.pending.type]: (state) => {
       state.isLoading = true;
     },
-    [getSelectOptions.fulfilled.type]: (state:any, { payload }) => {
+    [getSelectOptions.fulfilled.type]: (state, { payload }) => {
 
       state.isLoading = false;
 
-      state.selectOptions = payload.records.map((i:any) => {
+      state.selectOptions = payload.records.map((i:ISingleBook) => {
         return  i.nameOfAuthor 
       })
     },
