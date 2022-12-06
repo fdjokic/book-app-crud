@@ -1,5 +1,6 @@
 import { baseUrl } from './../axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { getBase64 } from '../helpers';
 
 const initialState = {
   isLoading: false,
@@ -52,6 +53,23 @@ export const deleteBook = createAsyncThunk(
     }
   }
 );
+export const createBook = createAsyncThunk(
+  'books/createBook',
+  async (book: any, thunkAPI) => {
+    try {
+      const copy: any = { ...book };
+      copy.coverPhoto = await getBase64(copy.coverPhoto);
+      // const fd = new FormData();
+      // fd.append('image', copy.coverPhoto);
+      // copy.coverPhoto = fd;
+      const resp = await baseUrl.post('/books', copy, thunkAPI);
+
+      return resp.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 
 const booksSlice = createSlice({
   name: 'books',
@@ -88,6 +106,17 @@ const booksSlice = createSlice({
       state.isLoading = false;
     },
     [deleteBook.rejected.type]: (state) => {
+      state.isLoading = false;
+    },
+
+    [createBook.pending.type]: (state) => {
+      state.isLoading = true;
+    },
+    [createBook.fulfilled.type]: (state, { payload }) => {
+      state.isLoading = false;
+      console.log(payload);
+    },
+    [createBook.rejected.type]: (state) => {
       state.isLoading = false;
     },
   },

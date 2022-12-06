@@ -23,6 +23,7 @@ export default function Input(props: IInput) {
       style={{ width: width }}
       onChange={onChange}
       type={type}
+
       //   {...(error && { error: true, helperText: error })}
     />
   );

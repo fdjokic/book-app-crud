@@ -1,9 +1,14 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { ISingleBook, ISingleBookPOST } from '../books.interfaces';
 import { Header } from '../components/Header/Header';
 import Input from '../components/Input/Inputs';
+import { createBook } from '../features/bookSlice';
+import { AppDispatch } from '../store';
 
 export const AddBook = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const [state, setState] = useState<ISingleBookPOST>({
     isbn: 23902390923,
     title: '',
@@ -17,10 +22,22 @@ export const AddBook = () => {
 
   const handleChange = (e: any) => {
     const name = e.target.name;
-    const value = e.target.value;
+    let value = e.target.value;
+    const type = e.target.type;
+    console.log(type);
+    if (type === 'number') {
+      value = parseInt(value);
+    }
 
     setState({ ...state, [name]: value });
   };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+
+    dispatch(createBook(state));
+  };
+
   console.log(state);
   return (
     <>
@@ -55,28 +72,45 @@ export const AddBook = () => {
             onChange={handleChange}
           />
           <Input
+            label={state.dateOfBirthAuthor ? '' : 'Date of birth'}
+            name='dateOfBirthAuthor'
+            type='date'
+            width='30%'
+            value={state.dateOfBirthAuthor}
+            onChange={handleChange}
+          />
+          <Input
             label='Number of pages'
             width='20%'
             name='numberOfPages'
+            type='number'
             value={state.numberOfPages}
             onChange={handleChange}
           />
           <Input
             label='Year of publishing'
             width='20%'
-            name='yearOfPublishing'
             type='number'
+            name='yearOfPublishing'
             value={state.yearOfPublishing}
             onChange={handleChange}
           />
           <Input
             label='Quantity'
             width='20%'
+            type='number'
             name='quantity'
             value={state.quantity}
             onChange={handleChange}
           />
-          <Input label='Title' name='blah' />
+          <input
+            name='coverPhoto'
+            value={state.coverPhoto}
+            onChange={handleChange}
+            type='file'
+            accept='image/*'
+          />
+          <button onClick={handleSubmit}></button>
         </form>
       </div>
     </>

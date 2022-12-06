@@ -1,9 +1,8 @@
-import { TableRow } from "@mui/material";
-import React from "react";
-import { ISingleBook, ISingleBookInfo } from "../../books.interfaces";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import Placeholder from "../../assets/images/placeholder.jpeg";
-import { CustomCell } from "../../styles/customComponents";
+import React from 'react';
+import { ISingleBook, ISingleBookInfo } from '../../books.interfaces';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import Placeholder from '../../assets/images/placeholder.jpeg';
+import { CustomCell } from '../../styles/customComponents';
 
 export const TableContent = (props: ISingleBookInfo) => {
   const {
@@ -19,9 +18,8 @@ export const TableContent = (props: ISingleBookInfo) => {
     <>
       <CustomCell>
         <img
-          style={{ width: "50px", height: "50px" }}
           src={coverPhoto}
-          alt="cover-photo"
+          alt='cover-img'
           onError={({ currentTarget }) => (currentTarget.src = Placeholder)}
         />
       </CustomCell>
