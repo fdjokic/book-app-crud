@@ -9,11 +9,12 @@ const initialState = {
   singleBook: {},
   totalRecords: null,
   limit: null,
+  selectOptions:[],
 };
 
 export const getBooks = createAsyncThunk(
   'books/getBooks',
-  async (filter: string, thunkAPI) => {
+  async (filter: string | null, thunkAPI) => {
     try {
       let resp;
 
@@ -68,6 +69,20 @@ export const createBook = createAsyncThunk(
   }
 );
 
+export const getSelectOptions = createAsyncThunk(
+  'books/getSelectOptions',
+  async (_, thunkAPI) => {
+    try {
+    
+       const  resp = await baseUrl.get('/books');
+
+      return resp.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 const booksSlice = createSlice({
   name: 'books',
   initialState,
@@ -76,11 +91,12 @@ const booksSlice = createSlice({
     [getBooks.pending.type]: (state) => {
       state.isLoading = true;
     },
-    [getBooks.fulfilled.type]: (state, { payload }) => {
+    [getBooks.fulfilled.type]: (state:any, { payload }) => {
       state.books = payload.records;
       state.isLoading = false;
       state.totalRecords = payload.totalRecords;
       state.limit = payload.limit;
+    
     },
     [getBooks.rejected.type]: (state) => {
       state.isLoading = false;
@@ -118,6 +134,22 @@ const booksSlice = createSlice({
       toast.success(payload.error.responseMessage[0])
 
     },
+    [getSelectOptions.pending.type]: (state) => {
+      state.isLoading = true;
+    },
+    [getSelectOptions.fulfilled.type]: (state:any, { payload }) => {
+
+      state.isLoading = false;
+
+      state.selectOptions = payload.records.map((i:any) => {
+        return  i.nameOfAuthor 
+      })
+    },
+    [getSelectOptions.rejected.type]: (state) => {
+      state.isLoading = false;
+    },
+
+    
   },
 });
 

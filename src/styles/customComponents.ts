@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Select,
   TableCell,
   TableContainer,
   TablePagination,
@@ -70,3 +71,11 @@ export const CustomTableRow = styled(TableRow)(() => ({
     transition: 'all 0.5s ease-out',
   },
 }));
+
+export const CustomSelect = styled(Select)(()=>({
+  outline:'1px solid white',
+  width:'10rem',
+  height:'2rem',
+  color:'white',
+
+}))

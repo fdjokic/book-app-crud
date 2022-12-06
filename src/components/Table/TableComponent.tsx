@@ -45,7 +45,7 @@ export const TableComponent = () => {
     }
 
     dispatch(getBooks(filter));
-  }, [sortQueries, page, limit, dispatch]);
+  }, [sortQueries, page]);
 
   const handlePageChange = (
     event: React.MouseEvent<HTMLButtonElement> | null,
