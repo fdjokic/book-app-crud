@@ -5,6 +5,7 @@ import { Loading } from "./components/Loading/Loading";
 import { Route, Routes } from "react-router";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Header } from "./components/Header/Header";
+import { AddBook } from "./pages/AddBook";
 
 function App() {
   return (
@@ -16,9 +17,7 @@ function App() {
           <Route
             path="/add-book"
             element={
-              <div>
-                <Header title="Add book" />
-              </div>
+              <AddBook/>
             }
           />
         </Routes>
