@@ -44,7 +44,7 @@ export const AddBook = () => {
 
   return (
     <>
-      <Header title="Add Book" />
+      <Header title="Add Book" arrow />
       <div
         style={{
           display: "flex",

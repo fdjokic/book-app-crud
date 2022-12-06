@@ -13,7 +13,7 @@ import {
 import { ISingleBook } from "../../books.interfaces";
 import { BookPreview } from "../Preview/BookPreview";
 import { Header } from "../Header/Header";
-import "./table.css";
+import "../../styles/table.css";
 
 export const TableComponent = () => {
   // states
@@ -61,7 +61,7 @@ export const TableComponent = () => {
   return (
     <div className="container">
       <div className={slide ? "table shrink" : "table"}>
-        <Header circle title="Books" />
+        <Header circle title="Books" select />
         <CustomTableContainer>
           <Table aria-label="simple table" stickyHeader>
             <TableHeader query={sortQueries} setQuery={setSortQueries} />

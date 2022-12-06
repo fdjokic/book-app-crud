@@ -1,5 +1,6 @@
-import React from 'react';
-import { IconType } from '../Preview/IconContainer';
+import React from "react";
+import { IconType } from "../Preview/IconContainer";
+import "../../styles/icon.css";
 
 interface IIcon {
   width: string;
@@ -8,6 +9,7 @@ interface IIcon {
   children: IconType;
   onClick: () => void;
   color: string;
+  fixed?: boolean;
 }
 
 export const Icon = ({
@@ -17,6 +19,7 @@ export const Icon = ({
   color,
   children,
   onClick,
+  fixed,
 }: IIcon) => {
   return (
     <>
@@ -26,9 +29,10 @@ export const Icon = ({
           fontSize: `${fontSize}`,
           background: `${background}`,
           color: `${color}`,
-          cursor: 'pointer',
+          cursor: "pointer",
         }}
         onClick={onClick}
+        className={fixed ? "fixed" : ""}
       >
         {children}
       </span>

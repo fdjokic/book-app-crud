@@ -2,7 +2,7 @@ import React from "react";
 import { ISingleBook, ISingleBookInfo } from "../../books.interfaces";
 import { IconContainer } from "./IconContainer";
 import Placeholder from "../../assets/images/placeholder.jpeg";
-import "./bookPreview.css";
+import "../../styles/bookPreview.css";
 import { InfoLine } from "./InfoLine";
 
 export const BookPreview = ({
