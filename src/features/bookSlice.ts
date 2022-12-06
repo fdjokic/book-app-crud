@@ -1,6 +1,7 @@
 import { baseUrl } from './../axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getBase64 } from '../helpers';
+import { toast } from 'react-toastify';
 
 const initialState = {
   isLoading: false,
@@ -108,12 +109,14 @@ const booksSlice = createSlice({
     [createBook.pending.type]: (state) => {
       state.isLoading = true;
     },
-    [createBook.fulfilled.type]: (state, { payload }) => {
+    [createBook.fulfilled.type]: (state) => {
       state.isLoading = false;
-      console.log(payload);
+      toast.success('Book added')
     },
-    [createBook.rejected.type]: (state) => {
+    [createBook.rejected.type]: (state, {payload}) => {
       state.isLoading = false;
+      toast.success(payload.error.responseMessage[0])
+
     },
   },
 });

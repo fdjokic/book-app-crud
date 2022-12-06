@@ -1,5 +1,5 @@
-import React from 'react';
-import { TextField } from '@mui/material';
+import React from "react";
+import { TextField } from "@mui/material";
 
 interface IInput {
   name: string;
@@ -18,7 +18,7 @@ export default function Input(props: IInput) {
 
   return (
     <TextField
-      variant='standard'
+      variant="standard"
       label={label}
       name={name}
       value={value}
