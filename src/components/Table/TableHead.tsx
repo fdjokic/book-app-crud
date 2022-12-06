@@ -1,5 +1,6 @@
-import { TableCell, TableHead, TableRow, TableSortLabel } from "@mui/material";
+import { TableHead, TableRow, TableSortLabel } from "@mui/material";
 import React, { useState } from "react";
+import { CustomTableHeaderCell } from "../../styles/customComponents";
 // interfaces
 interface IQuery {
   author: string;
@@ -38,11 +39,13 @@ export const TableHeader = ({ query, setQuery }: any) => {
       {/* change font color to gray */}
       <TableHead>
         <TableRow>
-          <TableCell sx={{ border: "none" }}></TableCell>
+          <CustomTableHeaderCell
+            sx={{ border: "none" }}
+          ></CustomTableHeaderCell>
 
           {sortTitles.map((i) => {
             return (
-              <TableCell key={i}>
+              <CustomTableHeaderCell key={i}>
                 <TableSortLabel
                   onClick={() => handleSort(i)}
                   active={active === i}
@@ -50,13 +53,13 @@ export const TableHeader = ({ query, setQuery }: any) => {
                 >
                   {i}
                 </TableSortLabel>
-              </TableCell>
+              </CustomTableHeaderCell>
             );
           })}
-          <TableCell>Year</TableCell>
-          <TableCell>Pages</TableCell>
-          <TableCell>Quantity</TableCell>
-          <TableCell></TableCell>
+          <CustomTableHeaderCell>Year</CustomTableHeaderCell>
+          <CustomTableHeaderCell>Pages</CustomTableHeaderCell>
+          <CustomTableHeaderCell>Quantity</CustomTableHeaderCell>
+          <CustomTableHeaderCell></CustomTableHeaderCell>
         </TableRow>
       </TableHead>
     </>

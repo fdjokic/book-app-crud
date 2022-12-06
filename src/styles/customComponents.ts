@@ -1,9 +1,10 @@
+import { TableCell, TableSortLabel } from '@mui/material';
 import {
   Box,
   Button,
   Select,
-  TableCell,
   TableContainer,
+  TableHead,
   TablePagination,
   TableRow,
 } from '@mui/material';
@@ -12,6 +13,10 @@ import { styled } from '@mui/system';
 export const CustomCell = styled(TableCell)(() => ({
   borderBottom: 'none',
   color: 'GrayText',
+ maxWidth:'7rem',
+ minWidth:'5rem'
+
+
 
 }));
 
@@ -77,5 +82,11 @@ export const CustomSelect = styled(Select)(()=>({
   width:'10rem',
   height:'2rem',
   color:'white',
+
+}))
+
+export const CustomTableHeaderCell = styled(TableCell)(()=>({
+fontWeight:'500',
+  color:'gray',
 
 }))
