@@ -81,7 +81,6 @@ export const CustomSelect = styled(Select)(()=>({
   width:'10rem',
   height:'2rem',
   color:'white',
-
 }))
 
 export const CustomTableHeaderCell = styled(TableCell)(()=>({

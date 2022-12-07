@@ -109,7 +109,6 @@ const booksSlice = createSlice({
     [getSingleBook.fulfilled.type]: (state, { payload }) => {
       state.singleBook = payload;
       state.isLoading = false;
-      console.log(payload);
     },
     [getSingleBook.rejected.type]: (state) => {
       state.isLoading = false;
@@ -119,6 +118,7 @@ const booksSlice = createSlice({
     },
     [deleteBook.fulfilled.type]: (state) => {
       state.isLoading = false;
+      toast.success('Book deleted')
     },
     [deleteBook.rejected.type]: (state) => {
       state.isLoading = false;

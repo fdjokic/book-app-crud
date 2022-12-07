@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { ISingleBookPOST } from "../types/books.interfaces";
-import { Header } from "../components/Header/Header";
-import Input from "../components/Input/Inputs";
-import { createBook } from "../features/bookSlice";
-import { getBase64, onlyLetters } from "../helpers";
-import { AppDispatch } from "../store";
+import { createBook } from "../../features/bookSlice";
+import { getBase64, onlyLetters } from "../../helpers";
+import { AppDispatch } from "../../store";
+import { ISingleBookPOST } from "../../types/books.interfaces";
+import { Btn } from "../Buttons/Btn";
+import Input from "../Input/Inputs";
 
-export const AddBook = () => {
+export const Form = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [state, setState] = useState<ISingleBookPOST>({
     isbn: 23902390923,
@@ -40,11 +40,20 @@ export const AddBook = () => {
     e.preventDefault();
 
     dispatch(createBook(state));
+    setState({
+      isbn: 23902390923,
+      title: "",
+      nameOfAuthor: "",
+      dateOfBirthAuthor: "",
+      numberOfPages: null,
+      yearOfPublishing: null,
+      quantity: null,
+      coverPhoto: "",
+    });
   };
 
   return (
     <>
-      <Header title="Add Book" arrow />
       <div
         style={{
           display: "flex",
@@ -57,7 +66,7 @@ export const AddBook = () => {
             width: "50%",
             display: "flex",
             flexDirection: "column",
-            gap: "1rem",
+            gap: "1.5rem",
             padding: "5rem",
           }}
         >
@@ -107,21 +116,42 @@ export const AddBook = () => {
             onChange={handleChange}
             onKeyDown={onlyLetters}
           />
-          <input
-            name="coverPhoto"
-            onChange={(e: any) => {
-              getBase64(e.target.files[0]).then((res) =>
-                setState((prev: ISingleBookPOST) => {
-                  const copy = { ...prev };
-                  copy.coverPhoto = res;
-                  return copy;
-                })
-              );
-            }}
-            type="file"
-            accept="image/*"
+
+          <div style={{ display: "flex", gap: "2rem" }}>
+            <Input
+              value={state.coverPhoto ? "Image Uploaded" : ""}
+              width="60%"
+              label="Cover Photo"
+            />
+            <Btn
+              variant="outlined"
+              width="10rem"
+              title="Upload Image"
+              component="label"
+            >
+              <input
+                name="coverPhoto"
+                hidden
+                onChange={(e: any) => {
+                  getBase64(e.target.files[0]).then((res) =>
+                    setState((prev: ISingleBookPOST) => {
+                      const copy = { ...prev };
+                      copy.coverPhoto = res;
+                      return copy;
+                    })
+                  );
+                }}
+                type="file"
+                accept="image/png, image/jpeg"
+              />
+            </Btn>
+          </div>
+          <Btn
+            variant="contained"
+            onClick={handleSubmit}
+            width="10rem"
+            title="Save Book"
           />
-          <button onClick={handleSubmit}></button>
         </form>
       </div>
     </>

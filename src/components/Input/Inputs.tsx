@@ -2,7 +2,7 @@ import React from "react";
 import { TextField } from "@mui/material";
 
 interface IInput {
-  name: string;
+  name?: string;
   label?: string;
   value?: any;
   placeholder?: string;
