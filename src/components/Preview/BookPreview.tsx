@@ -14,7 +14,6 @@ export const BookPreview = ({
   bookInfo: any;
   setSlide: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  console.log(bookInfo);
   return (
     <div className={slide ? "singleBook show" : "singleBook"}>
       <div className="singleBook-header">

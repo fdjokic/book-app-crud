@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { createBook, updateBook } from "../../features/bookSlice";
 import { getBase64, onlyLetters } from "../../helpers";
-import { AppDispatch, RootState } from "../../store";
+import { AppDispatch } from "../../store";
 import { ISingleBookPOST } from "../../types/books.interfaces";
 import { Btn } from "../Buttons/Btn";
 import Input from "../Input/Inputs";
@@ -18,7 +17,6 @@ interface IForm {
 export const Form = ({ editing, state, setState }: IForm) => {
   // states
   const dispatch = useDispatch<AppDispatch>();
-  const navigate = useNavigate();
   const {
     title,
     nameOfAuthor,
@@ -64,13 +62,12 @@ export const Form = ({ editing, state, setState }: IForm) => {
     // check editing page
     if (editing) {
       dispatch(updateBook(state));
-      navigate("/");
       return;
     }
 
     dispatch(createBook(state));
   };
-  console.log(state);
+
   return (
     <>
       <div

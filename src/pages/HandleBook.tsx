@@ -36,7 +36,6 @@ export const HandleBook = () => {
     const obj = JSON.parse(JSON.stringify(singleBook));
 
     setState(obj);
-    console.log("logged");
   }, [singleBook]);
 
   return (

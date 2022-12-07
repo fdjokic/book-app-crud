@@ -18,7 +18,7 @@ export const onlyLetters = (e: KeyboardEvent<HTMLImageElement>) => {
 };
 
 export const validate = (name?: string, value?: any) => {
-  console.log(name,value)
+
   switch (name) {
     case "title":
       return value.length > 3 ? false : true;
