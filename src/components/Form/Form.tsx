@@ -20,6 +20,15 @@ export const Form = () => {
     quantity: null,
     coverPhoto: "",
   });
+  const {
+    title,
+    nameOfAuthor,
+    numberOfPages,
+    quantity,
+    yearOfPublishing,
+    dateOfBirthAuthor,
+    coverPhoto,
+  } = state;
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const name: string = e.target.name;
@@ -39,14 +48,6 @@ export const Form = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const {
-      title,
-      nameOfAuthor,
-      numberOfPages,
-      quantity,
-      yearOfPublishing,
-      dateOfBirthAuthor,
-    } = state;
 
     if (
       !title ||
@@ -95,30 +96,30 @@ export const Form = () => {
           <Input
             name="title"
             label="Title"
-            value={state.title}
+            value={title}
             onChange={handleChange}
           />
           <Input
             label="Author"
             placeholder="Name of author"
-            value={state.nameOfAuthor}
+            value={nameOfAuthor}
             name="nameOfAuthor"
             onChange={handleChange}
           />
           <Input
-            label={state.dateOfBirthAuthor ? "Date of Birth" : ""}
+            label={dateOfBirthAuthor ? "Date of Birth" : ""}
             name="dateOfBirthAuthor"
             type="date"
             width="30%"
             placeholder="Enter Date"
-            value={state.dateOfBirthAuthor}
+            value={dateOfBirthAuthor}
             onChange={handleChange}
           />
           <Input
             label="Number of pages"
             width="20%"
             name="numberOfPages"
-            value={state.numberOfPages}
+            value={numberOfPages}
             onChange={handleChange}
             onKeyDown={onlyLetters}
           />
@@ -126,7 +127,7 @@ export const Form = () => {
             label="Year of publishing"
             width="20%"
             name="yearOfPublishing"
-            value={state.yearOfPublishing}
+            value={yearOfPublishing}
             onChange={handleChange}
             onKeyDown={onlyLetters}
           />
@@ -134,14 +135,14 @@ export const Form = () => {
             label="Quantity"
             width="20%"
             name="quantity"
-            value={state.quantity}
+            value={quantity}
             onChange={handleChange}
             onKeyDown={onlyLetters}
           />
 
           <div style={{ display: "flex", gap: "2rem" }}>
             <Input
-              value={state.coverPhoto ? "Image Uploaded" : ""}
+              value={coverPhoto ? "Image Uploaded" : ""}
               width="60%"
               label="Cover Photo"
             />
