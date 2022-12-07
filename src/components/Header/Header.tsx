@@ -1,8 +1,7 @@
 import { ArrowBack } from "@mui/icons-material";
-import { MenuItem } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router";
-import { CustomBox, CustomSelect } from "../../styles/customComponents";
+import { CustomBox } from "../../styles/customComponents";
 import { CircleButton } from "../Buttons/CircleButton";
 import { Icon } from "../Icon/Icon";
 import { Select } from "../Select/Select";

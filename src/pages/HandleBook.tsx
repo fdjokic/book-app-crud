@@ -28,19 +28,19 @@ export const HandleBook = () => {
     quantity: "",
     coverPhoto: "",
   });
-
   useEffect(() => {
     if (editing) {
       dispatch(getSingleBook(id));
     }
+    /* eslint-disable */
   }, [id]);
-
   useEffect(() => {
     if (editing) {
       const obj = JSON.parse(JSON.stringify(singleBook));
 
       setState(obj);
     }
+    /* eslint-disable */
   }, [singleBook]);
 
   return (

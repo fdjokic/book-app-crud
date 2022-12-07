@@ -2,19 +2,6 @@ import { TableHead, TableRow, TableSortLabel } from "@mui/material";
 import React, { useState } from "react";
 import { CustomTableHeaderCell } from "../../styles/customComponents";
 // interfaces
-interface IQuery {
-  author: string;
-  title: string;
-}
-interface ITableHeader {
-  setQuery: React.Dispatch<
-    React.SetStateAction<{
-      author: null;
-      title: null;
-    }>
-  >;
-  query: IQuery;
-}
 
 export const TableHeader = ({ query, setQuery }: any) => {
   // states

@@ -1,10 +1,9 @@
-import { TableCell, TableSortLabel } from '@mui/material';
+import { TableCell } from '@mui/material';
 import {
   Box,
   Button,
   Select,
   TableContainer,
-  TableHead,
   TablePagination,
   TableRow,
 } from '@mui/material';
