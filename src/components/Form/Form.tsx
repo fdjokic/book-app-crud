@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import { createBook } from "../../features/bookSlice";
 import { getBase64, onlyLetters } from "../../helpers";
 import { AppDispatch } from "../../store";
@@ -38,6 +39,26 @@ export const Form = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const {
+      title,
+      nameOfAuthor,
+      numberOfPages,
+      quantity,
+      yearOfPublishing,
+      dateOfBirthAuthor,
+    } = state;
+
+    if (
+      !title ||
+      !nameOfAuthor ||
+      !dateOfBirthAuthor ||
+      !numberOfPages ||
+      !yearOfPublishing ||
+      !quantity
+    ) {
+      toast.error("Fill out required fields");
+      return;
+    }
 
     dispatch(createBook(state));
     setState({
