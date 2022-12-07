@@ -1,9 +1,9 @@
-import { ISingleBookPOST } from '../types/books.interfaces';
-import { baseUrl } from './../axios';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getBase64 } from '../helpers';
-import { toast } from 'react-toastify';
-import { ISingleBook } from '../types/books.interfaces';
+import { ISingleBookPOST } from "../types/books.interfaces";
+import { baseUrl } from "./../axios";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { getBase64 } from "../helpers";
+import { toast } from "react-toastify";
+import { ISingleBook } from "../types/books.interfaces";
 
 const initialState = {
   isLoading: false,
@@ -11,19 +11,19 @@ const initialState = {
   singleBook: {},
   totalRecords: null,
   limit: null,
-  selectOptions:[],
+  selectOptions: [],
 };
 
 export const getBooks = createAsyncThunk(
-  'books/getBooks',
+  "books/getBooks",
   async (filter: string | null, thunkAPI) => {
     try {
       let resp;
 
       if (filter) {
-        resp = await baseUrl.get('/books' + filter);
+        resp = await baseUrl.get("/books" + filter);
       } else {
-        resp = await baseUrl.get('/books');
+        resp = await baseUrl.get("/books");
       }
       return resp.data;
     } catch (error) {
@@ -33,10 +33,10 @@ export const getBooks = createAsyncThunk(
 );
 
 export const getSingleBook = createAsyncThunk(
-  'books/getSingleBook',
-  async (id: undefined | string | number, thunkAPI) => {
+  "books/getSingleBook",
+  async (id: any, thunkAPI) => {
     try {
-      const resp = await baseUrl.get('/books/' + id);
+      const resp = await baseUrl.get("/books/" + id);
       return resp.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -45,12 +45,12 @@ export const getSingleBook = createAsyncThunk(
 );
 
 export const deleteBook = createAsyncThunk(
-  'books/deleteBook',
+  "books/deleteBook",
   async (id: number, thunkAPI) => {
     try {
-      const resp = await baseUrl.delete('/books/' + id);
+      const resp = await baseUrl.delete("/books/" + id);
 
-      thunkAPI.dispatch(getBooks('?startPage=1&limitPage=10'));
+      thunkAPI.dispatch(getBooks("?startPage=1&limitPage=10"));
       return resp.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -58,11 +58,10 @@ export const deleteBook = createAsyncThunk(
   }
 );
 export const createBook = createAsyncThunk(
-  'books/createBook',
+  "books/createBook",
   async (book: ISingleBookPOST, thunkAPI) => {
     try {
-   
-      const resp = await baseUrl.post('/books', book, thunkAPI);
+      const resp = await baseUrl.post("/books", book, thunkAPI);
 
       return resp.data;
     } catch (error) {
@@ -72,11 +71,10 @@ export const createBook = createAsyncThunk(
 );
 
 export const getSelectOptions = createAsyncThunk(
-  'books/getSelectOptions',
+  "books/getSelectOptions",
   async (_, thunkAPI) => {
     try {
-    
-       const  resp = await baseUrl.get('/books');
+      const resp = await baseUrl.get("/books");
 
       return resp.data;
     } catch (error) {
@@ -85,20 +83,21 @@ export const getSelectOptions = createAsyncThunk(
   }
 );
 
-export const updateBook = createAsyncThunk('books/updateBook',async(book:any,thunkAPI)=>{
-  try {
-    const  resp = await baseUrl.patch('/books/' + book.id, book);
+export const updateBook = createAsyncThunk(
+  "books/updateBook",
+  async (book: any, thunkAPI) => {
+    try {
+      const resp = await baseUrl.patch("/books/" + book.id, book);
 
       return resp.data;
-    
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error);
-    
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
   }
-})
+);
 
 const booksSlice = createSlice({
-  name: 'books',
+  name: "books",
   initialState,
   reducers: {},
   extraReducers: {
@@ -110,7 +109,6 @@ const booksSlice = createSlice({
       state.isLoading = false;
       state.totalRecords = payload.totalRecords;
       state.limit = payload.limit;
-    
     },
     [getBooks.rejected.type]: (state) => {
       state.isLoading = false;
@@ -130,7 +128,7 @@ const booksSlice = createSlice({
     },
     [deleteBook.fulfilled.type]: (state) => {
       state.isLoading = false;
-      toast.success('Book deleted')
+      toast.success("Book deleted");
     },
     [deleteBook.rejected.type]: (state) => {
       state.isLoading = false;
@@ -141,23 +139,21 @@ const booksSlice = createSlice({
     },
     [createBook.fulfilled.type]: (state) => {
       state.isLoading = false;
-      toast.success('Book added')
+      toast.success("Book added");
     },
-    [createBook.rejected.type]: (state, {payload}) => {
+    [createBook.rejected.type]: (state, { payload }) => {
       state.isLoading = false;
-      toast.success(payload.error.responseMessage[0])
-
+      toast.success(payload.error.responseMessage[0]);
     },
     [getSelectOptions.pending.type]: (state) => {
       state.isLoading = true;
     },
     [getSelectOptions.fulfilled.type]: (state, { payload }) => {
-
       state.isLoading = false;
 
-      state.selectOptions = payload.records.map((i:ISingleBook) => {
-        return  i.nameOfAuthor 
-      })
+      state.selectOptions = payload.records.map((i: ISingleBook) => {
+        return i.nameOfAuthor;
+      });
     },
     [getSelectOptions.rejected.type]: (state) => {
       state.isLoading = false;
@@ -167,15 +163,12 @@ const booksSlice = createSlice({
     },
     [updateBook.fulfilled.type]: (state) => {
       state.isLoading = false;
-      toast.success('Book updated')
+      toast.success("Book updated");
     },
-    [updateBook.rejected.type]: (state, {payload}) => {
+    [updateBook.rejected.type]: (state, { payload }) => {
       state.isLoading = false;
-      toast.success(payload.error.responseMessage[0])
-
+      toast.success(payload.error.responseMessage[0]);
     },
-
-    
   },
 });
 

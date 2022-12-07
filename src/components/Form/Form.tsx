@@ -1,33 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
-import {
-  createBook,
-  getSingleBook,
-  updateBook,
-} from "../../features/bookSlice";
+import { createBook, updateBook } from "../../features/bookSlice";
 import { getBase64, onlyLetters } from "../../helpers";
 import { AppDispatch, RootState } from "../../store";
 import { ISingleBookPOST } from "../../types/books.interfaces";
 import { Btn } from "../Buttons/Btn";
 import Input from "../Input/Inputs";
 
-export const Form = ({ editing }: { editing: boolean }) => {
+interface IForm {
+  editing: boolean;
+  state: ISingleBookPOST;
+  setState: React.Dispatch<React.SetStateAction<ISingleBookPOST>>;
+}
+
+export const Form = ({ editing, state, setState }: IForm) => {
   // states
   const dispatch = useDispatch<AppDispatch>();
-  const { id } = useParams();
-  const { singleBook } = useSelector((store: RootState) => store.books);
-  const [state, setState] = useState<ISingleBookPOST>({
-    isbn: 23902390923,
-    title: "",
-    nameOfAuthor: "",
-    dateOfBirthAuthor: "",
-    numberOfPages: null,
-    yearOfPublishing: null,
-    quantity: null,
-    coverPhoto: "",
-  });
+  const navigate = useNavigate();
   const {
     title,
     nameOfAuthor,
@@ -38,15 +29,7 @@ export const Form = ({ editing }: { editing: boolean }) => {
     coverPhoto,
   } = state;
 
-  useEffect(() => {
-    if (editing) {
-      dispatch(getSingleBook(id));
-      const obj = JSON.parse(JSON.stringify(singleBook));
-      setState(obj);
-      return;
-    }
-  }, []);
-
+  // handleChange
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const name: string = e.target.name;
     let value: string | number = e.target.value;
@@ -63,9 +46,10 @@ export const Form = ({ editing }: { editing: boolean }) => {
     setState({ ...state, [name]: value });
   };
 
+  // handleSubmit
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
+    // check empty fields
     if (
       !title ||
       !nameOfAuthor ||
@@ -77,25 +61,16 @@ export const Form = ({ editing }: { editing: boolean }) => {
       toast.error("Fill out required fields");
       return;
     }
-
+    // check editing page
     if (editing) {
       dispatch(updateBook(state));
+      navigate("/");
       return;
     }
 
     dispatch(createBook(state));
-    setState({
-      isbn: 23902390923,
-      title: "",
-      nameOfAuthor: "",
-      dateOfBirthAuthor: "",
-      numberOfPages: null,
-      yearOfPublishing: null,
-      quantity: null,
-      coverPhoto: "",
-    });
   };
-
+  console.log(state);
   return (
     <>
       <div
@@ -178,9 +153,7 @@ export const Form = ({ editing }: { editing: boolean }) => {
                 name="coverPhoto"
                 hidden
                 onChange={(e: any) => {
-                  getBase64(
-                    editing ? state.coverPhoto : e.target.files[0]
-                  ).then((res) =>
+                  getBase64(e.target.files[0]).then((res) =>
                     setState((prev: ISingleBookPOST) => {
                       const copy = { ...prev };
                       copy.coverPhoto = res;

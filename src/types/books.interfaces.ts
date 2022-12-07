@@ -20,12 +20,12 @@ export interface ISingleBook {
 // since back-end hasn't provided any convention in naming
 export interface ISingleBookPOST {
   id?:string | number | undefined
-  isbn: number | null;
+  isbn: number | '';
   title: string;
   nameOfAuthor: string;
   dateOfBirthAuthor: string;
-  numberOfPages: number | null;
-  yearOfPublishing: number | null;
-  quantity: number | null;
+  numberOfPages: number | '';
+  yearOfPublishing: number | '';
+  quantity: number | '';
   coverPhoto?:string | any;
 }
