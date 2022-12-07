@@ -1,9 +1,8 @@
 import React from "react";
-import { ISingleBook, ISingleBookInfo } from "../../types/books.interfaces";
 import { IconContainer } from "./IconContainer";
-import Placeholder from "../../assets/images/placeholder.jpeg";
 import "../../styles/bookPreview.css";
 import { InfoLine } from "./InfoLine";
+import { Image } from "../Image/Image";
 
 export const BookPreview = ({
   slide,
@@ -25,10 +24,13 @@ export const BookPreview = ({
           </div>
         </div>
       </div>
-      <img
+      <Image
         src={bookInfo.coverPhoto}
         alt="book-img"
-        onError={({ currentTarget }) => (currentTarget.src = Placeholder)}
+        maxWidth="100%"
+        minWidth="100%"
+        maxHeight="35%"
+        borderBottom=" 1px solid #e1e1e1"
       />
       <div className="singleBook-general-info">
         <h5>Info</h5>

@@ -28,13 +28,7 @@
   flex-direction: column;
   gap: 0.3rem;
 }
-/* header end */
-.singleBook img {
-  width: 100%;
-  height: 35%;
-  object-fit: contain;
-  border-bottom: 1px solid #e1e1e1;
-}
+
 /* info */
 .singleBook-general-info {
   display: flex;

@@ -1,8 +1,8 @@
 import React from "react";
-import { ISingleBook, ISingleBookInfo } from "../../types/books.interfaces";
+import { ISingleBookInfo } from "../../types/books.interfaces";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import Placeholder from "../../assets/images/placeholder.jpeg";
 import { CustomCell } from "../../styles/customComponents";
+import { Image } from "../Image/Image";
 
 export const TableContent = (props: ISingleBookInfo) => {
   const {
@@ -17,10 +17,12 @@ export const TableContent = (props: ISingleBookInfo) => {
   return (
     <>
       <CustomCell>
-        <img
+        <Image
           src={coverPhoto}
           alt="cover-img"
-          onError={({ currentTarget }) => (currentTarget.src = Placeholder)}
+          width=" 50px"
+          height=" 50px"
+          minWidth="3rem"
         />
       </CustomCell>
 

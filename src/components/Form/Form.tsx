@@ -70,23 +70,8 @@ export const Form = ({ editing, state, setState }: IForm) => {
 
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          width: "100%",
-          justifyContent: "flex-start",
-          maxHeight: "70vh",
-        }}
-      >
-        <form
-          style={{
-            width: "50%",
-            display: "flex",
-            flexDirection: "column",
-            gap: "1.5rem",
-            padding: "5rem",
-          }}
-        >
+      <div className="form-wrapper">
+        <form>
           <Input
             name="title"
             label="Title"
