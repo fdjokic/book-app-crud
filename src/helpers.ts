@@ -9,11 +9,37 @@ export const getBase64 = (file: any) => {
   });
 };
 
-export const onlyLetters = (e:KeyboardEvent<HTMLImageElement>) => {
-
-  if (!(e.key === 'Backspace')) {
+export const onlyLetters = (e: KeyboardEvent<HTMLImageElement>) => {
+  if (!(e.key === "Backspace")) {
     const regex = /[0-9]/;
-    const valid:boolean = regex.test(e.key);
+    const valid: boolean = regex.test(e.key);
     if (!valid) e.preventDefault();
   }
 };
+
+export const validate = (name?: string, value?: any) => {
+  console.log(name,value)
+  switch (name) {
+    case "title":
+      return value.length > 3 ? false : true;
+
+    case "nameOfAuthor":
+      return value.length > 3 ? false : true;
+
+    case "dateOfBirthAuthor":
+      return value ? false : true;
+
+    case "numberOfPages":
+      return value ? false : true;
+
+    case "yearOfPublishing":
+      return value ? false : true;
+
+    case "quantity":
+      return value ? false : true;
+
+      default:
+        break;
+  }
+};
+

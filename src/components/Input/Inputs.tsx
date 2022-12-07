@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { TextField } from "@mui/material";
+import { validate } from "../../helpers";
 
 interface IInput {
   name?: string;
@@ -16,6 +17,8 @@ export default function Input(props: IInput) {
   const { name, label, value, onChange, placeholder, width, type, onKeyDown } =
     props;
 
+  const [valid, setValid] = useState<any>(false);
+
   return (
     <TextField
       variant="standard"
@@ -27,8 +30,8 @@ export default function Input(props: IInput) {
       onChange={onChange}
       type={type}
       onKeyDown={onKeyDown}
-
-      //   {...(error && { error: true, helperText: error })}
+      onBlur={() => setValid(validate(name, value))}
+      error={valid}
     />
   );
 }
