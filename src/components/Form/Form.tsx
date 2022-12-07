@@ -1,15 +1,23 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router";
 import { toast } from "react-toastify";
-import { createBook } from "../../features/bookSlice";
+import {
+  createBook,
+  getSingleBook,
+  updateBook,
+} from "../../features/bookSlice";
 import { getBase64, onlyLetters } from "../../helpers";
-import { AppDispatch } from "../../store";
+import { AppDispatch, RootState } from "../../store";
 import { ISingleBookPOST } from "../../types/books.interfaces";
 import { Btn } from "../Buttons/Btn";
 import Input from "../Input/Inputs";
 
-export const Form = () => {
+export const Form = ({ editing }: { editing: boolean }) => {
+  // states
   const dispatch = useDispatch<AppDispatch>();
+  const { id } = useParams();
+  const { singleBook } = useSelector((store: RootState) => store.books);
   const [state, setState] = useState<ISingleBookPOST>({
     isbn: 23902390923,
     title: "",
@@ -29,6 +37,15 @@ export const Form = () => {
     dateOfBirthAuthor,
     coverPhoto,
   } = state;
+
+  useEffect(() => {
+    if (editing) {
+      dispatch(getSingleBook(id));
+      const obj = JSON.parse(JSON.stringify(singleBook));
+      setState(obj);
+      return;
+    }
+  }, []);
 
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const name: string = e.target.name;
@@ -58,6 +75,11 @@ export const Form = () => {
       !quantity
     ) {
       toast.error("Fill out required fields");
+      return;
+    }
+
+    if (editing) {
+      dispatch(updateBook(state));
       return;
     }
 
@@ -156,7 +178,9 @@ export const Form = () => {
                 name="coverPhoto"
                 hidden
                 onChange={(e: any) => {
-                  getBase64(e.target.files[0]).then((res) =>
+                  getBase64(
+                    editing ? state.coverPhoto : e.target.files[0]
+                  ).then((res) =>
                     setState((prev: ISingleBookPOST) => {
                       const copy = { ...prev };
                       copy.coverPhoto = res;

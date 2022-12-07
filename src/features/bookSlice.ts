@@ -34,7 +34,7 @@ export const getBooks = createAsyncThunk(
 
 export const getSingleBook = createAsyncThunk(
   'books/getSingleBook',
-  async (id: number, thunkAPI) => {
+  async (id: undefined | string | number, thunkAPI) => {
     try {
       const resp = await baseUrl.get('/books/' + id);
       return resp.data;
@@ -84,6 +84,18 @@ export const getSelectOptions = createAsyncThunk(
     }
   }
 );
+
+export const updateBook = createAsyncThunk('books/updateBook',async(book:any,thunkAPI)=>{
+  try {
+    const  resp = await baseUrl.patch('/books/' + book.id, book);
+
+      return resp.data;
+    
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
+    
+  }
+})
 
 const booksSlice = createSlice({
   name: 'books',
@@ -150,10 +162,22 @@ const booksSlice = createSlice({
     [getSelectOptions.rejected.type]: (state) => {
       state.isLoading = false;
     },
+    [updateBook.pending.type]: (state) => {
+      state.isLoading = true;
+    },
+    [updateBook.fulfilled.type]: (state) => {
+      state.isLoading = false;
+      toast.success('Book updated')
+    },
+    [updateBook.rejected.type]: (state, {payload}) => {
+      state.isLoading = false;
+      toast.success(payload.error.responseMessage[0])
+
+    },
 
     
   },
 });
 
-// export const { handleEdit, handleAddCompany, clearCompanies } = books.actions
+// export const { handleEdit } = books.actions
 export default booksSlice.reducer;

@@ -17,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<TableComponent />} />
           <Route path="/add-book" element={<HandleBook />} />
+          <Route path="/edit-book/:id" element={<HandleBook />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </Router>

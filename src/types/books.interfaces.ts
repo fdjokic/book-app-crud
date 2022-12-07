@@ -19,6 +19,7 @@ export interface ISingleBook {
 
 // since back-end hasn't provided any convention in naming
 export interface ISingleBookPOST {
+  id?:string | number | undefined
   isbn: number | null;
   title: string;
   nameOfAuthor: string;

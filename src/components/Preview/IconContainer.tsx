@@ -5,6 +5,7 @@ import { Icon } from "../Icon/Icon";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
 import { deleteBook } from "../../features/bookSlice";
+import { useNavigate } from "react-router";
 
 export type IconType = ReturnType<typeof EditIcon>;
 
@@ -16,6 +17,7 @@ export const IconContainer = ({
   setSlide: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
 
   const handleDelete = () => {
     dispatch(deleteBook(id));
@@ -29,7 +31,7 @@ export const IconContainer = ({
           width="25px"
           color="white"
           fontSize="25px"
-          onClick={() => console.log("heey")}
+          onClick={() => navigate("/edit-book/" + id)}
         >
           <EditIcon />
         </Icon>
