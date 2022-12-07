@@ -26,6 +26,7 @@ function App() {
         closeOnClick={true}
         autoClose={1100}
         position="top-left"
+        limit={2}
       />
     </>
   );
