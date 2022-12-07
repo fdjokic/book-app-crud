@@ -59,6 +59,7 @@ export const Form = () => {
           display: "flex",
           width: "100%",
           justifyContent: "flex-start",
+          maxHeight: "70vh",
         }}
       >
         <form
