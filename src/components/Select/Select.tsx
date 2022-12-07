@@ -18,6 +18,7 @@ export const Select = () => {
       return;
     }
     selectOptions && dispatch(getBooks(`?author=${selectedAuthor}`));
+    /* eslint-disable */
   }, [selectedAuthor]);
 
   useEffect(() => {

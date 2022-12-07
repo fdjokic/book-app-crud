@@ -45,6 +45,7 @@ export const TableComponent = () => {
     }
 
     dispatch(getBooks(filter));
+    /* eslint-disable */
   }, [sortQueries, page]);
 
   const handlePageChange = (
